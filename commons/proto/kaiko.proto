@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package kaiko;
+
+service Kaiko {
+  rpc Exists(ExistsRequest) returns (ExistsResponse) {}
+}
+
+message ExistsRequest {
+  string exchange_code      = 1;
+  string exchange_pair_code = 2;
+}
+
+message ExistsResponse {
+  enum Exists {
+    UNKNOWN = 0;
+    YES     = 1;
+    NO      = 2;
+  }
+
+  Exists exists = 1;
+}

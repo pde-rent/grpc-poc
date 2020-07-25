@@ -5,8 +5,8 @@ import (
 	"flag"
 	"log"
 
-	"kaiko.io/kaiko"
 	"google.golang.org/grpc"
+	"kaiko.io/kaiko"
 )
 
 var exchangeCode = flag.String("exchange_code", "", "exchange code (eg. 'cbse' for Coinbase or 'bnce' for Binance)")
@@ -24,7 +24,7 @@ func main() {
 	cli := kaiko.NewKaikoClient(conn)
 
 	res, err := cli.Exists(context.Background(), &kaiko.ExistsRequest{
-		ExchangeCode: *exchangeCode,
+		ExchangeCode:     *exchangeCode,
 		ExchangePairCode: *exchangePairCode,
 	})
 	if err != nil {

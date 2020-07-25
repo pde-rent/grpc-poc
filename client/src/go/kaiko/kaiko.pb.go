@@ -144,7 +144,9 @@ func init() {
 	proto.RegisterType((*ExistsResponse)(nil), "kaiko.ExistsResponse")
 }
 
-func init() { proto.RegisterFile("kaiko.proto", fileDescriptor_58f13dd66bd1d6f9) }
+func init() {
+	proto.RegisterFile("kaiko.proto", fileDescriptor_58f13dd66bd1d6f9)
+}
 
 var fileDescriptor_58f13dd66bd1d6f9 = []byte{
 	// 210 bytes of a gzipped FileDescriptorProto
@@ -166,11 +168,11 @@ var fileDescriptor_58f13dd66bd1d6f9 = []byte{
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ context.Context
-var _ grpc.ClientConn
+var _ grpc.ClientConnInterface
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
+const _ = grpc.SupportPackageIsVersion6
 
 // KaikoClient is the client API for Kaiko service.
 //
@@ -180,10 +182,10 @@ type KaikoClient interface {
 }
 
 type kaikoClient struct {
-	cc *grpc.ClientConn
+	cc grpc.ClientConnInterface
 }
 
-func NewKaikoClient(cc *grpc.ClientConn) KaikoClient {
+func NewKaikoClient(cc grpc.ClientConnInterface) KaikoClient {
 	return &kaikoClient{cc}
 }
 
