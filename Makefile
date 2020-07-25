@@ -27,11 +27,14 @@ test-server: | build-server
 build-server-docker: #| build-server
 	cd ./server && sudo docker build -t kaiko-grpc-server .
 
-run-server-docker: #| build-server-docker
+run-server-docker: | build-server-docker
 	cd ./server && sudo docker run --publish 8080:8080 --name kaiko-grpc-server-poc kaiko-grpc-server
 
 test-server-docker:
 	sudo docker exec -it kaiko-grpc-server-poc sh -c "cd /kaiko-grpc-server/src/go/kaiko && go test -v"
+
+stop-server-docker:
+	cd ./server && sudo docker stop kaiko-grpc-server-poc
 
 kill-server-docker:
 	cd ./server && sudo docker kill --signal=SIGTERM kaiko-grpc-server-poc
@@ -42,4 +45,4 @@ restart-server-docker:
 remove-server-docker:
 	cd ./server && sudo docker rm kaiko-grpc-server-poc
 
-.PHONY: generate-bindings build-client run-client build-server run-server build-docker-server run-server-docker run-server-docker kill-server restart-server remove-server
+.PHONY: generate-bindings build-client run-client build-server run-server build-server-docker run-server-docker stop-server-docker kill-server-docker restart-server-docker remove-server-docker
